@@ -550,15 +550,45 @@ Data Cleaning
 
 
 Pandas 
-    Dataframe (type frame)
-    df.shape, df.columns, df.index
-    df.iloc[r1:r2, c1:c2], df.loc[c1,c2]
-    df.head(3), df.tail(3)
-    df.info()
-    Columns (type series)
+
+    
+    DataFrame --> tables
+    Explore
+        df.shape, df.columns, df.index, df.info()
+        df.head(3), df.tail(3)
+    Slicing
+        df[col] --> (type series)
+        df[[col]] --> (type dataframe)
+        df.loc[[r1,r2]:,[c1,c2]],  df.loc[ r1:r4]: :]
+        df.iloc[r1:r2, c1:c2]
+    Filtering
+        df[(df.salt >=50 ) & (df.eggs < 200)]
+        df.copy()
+        df.all() --> cols st all of col = nonzeros
+        df.any() --> cols st any of col = nonzeros
+        df.isnull().any() --> cols st any of col is null
+        df.dropna(how='any')
+
+        election.winner[too_close] = np.nan
+        election.[too_close].winner = np.nan
+
+
+    Import DataFrame
+        pd.read_csv('fn', 
+                index_col=0,
+                header=None,
+                names=[col, names],
+                na_values={colName:['-1']}, 
+                parse_dates[[0,1,2]])
+
+
+    
+    
+    
     np_vals = df.values
     df_log10 = np.log10(df)
 
+    Create DF
     users = pd.DataFrame( {'k': 'v', 'k2':'v2'})
     users = pd.DataFrame( dict(
                             list(
@@ -572,12 +602,7 @@ Pandas
         users[ {k:v, k2:v2}] --> dict can be also used to broadcast
 
 
-    pd.read_csv('fn', 
-                index_col=0,
-                header=None,
-                names=[col, names],
-                na_values={colName:['-1']}, 
-                parse_dates[[0,1,2]])
+
 
     DF.to_csv(out_tsv, sep='\t')
     DF.plot(color='red', subplots=True), plt.title, plt.xlabel, plt.ylabel,
